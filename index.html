@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧛 Вампирский квиз</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== СТАРТОВАЯ СТРАНИЦА ===== -->
+<div class="container" id="startPage">
+    <div class="header-top">
+        <h1>🧛 Вампирский квиз</h1>
+    </div>
+    
+    <div class="start-content">
+        <div class="start-question">Как давно тебе 17?</div>
+        <div class="start-subtext">Введи свою дату рождения и узнай, достоин ли ты войти в мир вампиров</div>
+        
+        <div class="start-form">
+            <label for="birthdate">Дата рождения</label>
+            <input type="date" id="birthdate">
+            <button class="btn btn-primary" id="startBtn">Подтвердить</button>
+        </div>
+    </div>
+    
+    <div class="footer">🩸 12 вопросов о крови, легендах и бессмертии</div>
+</div>
+
+<!-- ===== ПРОМЕЖУТОЧНЫЙ ЭКРАН №1 (между блоками 1 и 2) ===== -->
+<div class="container" id="transitionPage1" style="display: none;">
+    <div class="header-top">
+        <h1>🧛 Вампирский квиз</h1>
+    </div>
+    
+    <div class="start-content">
+        <div class="transition-icon">🩸</div>
+        <div class="transition-quote">Теперь проверим, что ты знаешь о вампирах</div>
+        <button class="btn btn-success" id="transitionBtn1">Поехали</button>
+    </div>
+    
+    <div class="footer">🩸 12 вопросов о крови, легендах и бессмертии</div>
+</div>
+
+<!-- ===== ПРОМЕЖУТОЧНЫЙ ЭКРАН №2 (между блоками 2 и 3) ===== -->
+<div class="container" id="transitionPage2" style="display: none;">
+    <div class="header-top">
+        <h1>🧛 Вампирский квиз</h1>
+    </div>
+    
+    <div class="start-content">
+        <div class="transition-icon">🌙</div>
+        <div class="transition-quote">«Лунный свет? Ты знаешь Дебюсси?»</div>
+        <div class="transition-text">Готова проверить свою память по саундтрекам своей любимой саги?</div>
+        <button class="btn btn-success" id="transitionBtn2">Да</button>
+    </div>
+    
+    <div class="footer">🩸 12 вопросов о крови, легендах и бессмертии</div>
+</div>
+
+<!-- ===== САМ КВИЗ ===== -->
+<div class="container" id="quizPage" style="display: none;">
+    <div class="header-top">
+        <h1>🧛 Вампирский квиз</h1>
+        <button class="btn-music" id="musicBtn" title="Включить/выключить музыку">🔇</button>
+    </div>
+    <div class="subhead">
+        <span id="qCounter">Вопрос 1 из 12</span>
+        <span>🎯 выбери ответ</span>
+    </div>
+
+    <div id="questionContainer">
+        <span class="question-type" id="qType">Тип</span>
+        <div class="question-text" id="qText">Загрузка...</div>
+        <div id="optionsArea"></div>
+        <div class="error-msg" id="errorMsg">⚠️ Выберите вариант ответа!</div>
+        <div class="explanation" id="explanationBlock"></div>
+    </div>
+
+    <div class="actions">
+        <div class="btn-group">
+            <button class="btn btn-primary" id="checkBtn">✔ Ответить</button>
+            <button class="btn btn-success" id="nextBtn" disabled>➜ Далее</button>
+        </div>
+        <button class="btn" id="resetBtn">⟳ Заново</button>
+    </div>
+    <div class="footer">🩸 12 вопросов о крови, легендах и бессмертии</div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО №1 (проверка возраста) ===== -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-window">
+        <div class="modal-icon" id="modalIcon">🧛</div>
+        <div class="modal-text" id="modalText">Текст</div>
+        <button class="btn btn-primary" id="modalBtn">Поехали!</button>
+    </div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО №2 (подарок из пуфика) ===== -->
+<div class="modal-overlay" id="giftModalOverlay">
+    <div class="modal-window">
+        <div class="modal-icon">🎁</div>
+        <div class="modal-text">Сначала забери подарочек из пуфика на балконе</div>
+        <button class="btn btn-success" id="giftModalBtn">Забрала</button>
+    </div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО №3 (подарок для аудиоблока) ===== -->
+<div class="modal-overlay" id="giftModalOverlay2">
+    <div class="modal-window">
+        <div class="modal-icon">🎁</div>
+        <div class="modal-text">Сначала забери свой подарочек из-под кресла</div>
+        <button class="btn btn-success" id="giftModalBtn2">Забрала</button>
+    </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="audio/font.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<script src="questions.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
