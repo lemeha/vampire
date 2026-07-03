@@ -828,31 +828,45 @@ function goToNext() {
     var nextIndex = currentIndex + 1;
     
     if (nextIndex >= totalQuestions) {
-        qText.textContent = '🎉 Поздравляем! Вы ответили на все вопросы!';
-        qType.textContent = '🏁 Финиш';
+        // ===== ФИНАЛЬНОЕ ОКНО =====
+        qText.textContent = '🎉 Поздравляю с Днём рождения, я тебя очень сильно люблю! 💖';
+        qType.textContent = '💝';
+        
+        var container = document.getElementById('questionContainer');
+        
+        // Удаляем старую вторую строку, если есть
+        var existingSecond = container.querySelector('.final-second-line');
+        if (existingSecond) {
+            existingSecond.remove();
+        }
+        
+        var secondLine = document.createElement('div');
+        secondLine.className = 'final-second-line';
+        secondLine.style.cssText = 'font-size:1.3rem; color:#e8c8b8; margin-top:15px; text-align:center; line-height:1.8; text-shadow: 0 0 30px rgba(200, 40, 40, 0.2);';
+        secondLine.innerHTML = 'Спасибо за поддержку и любовь, ты лучшая жена на свете! ❤️';
+        
         optionsArea.innerHTML = '';
         explanationBlock.classList.remove('show');
         checkBtn.disabled = true;
         nextBtn.disabled = true;
-        qCounter.textContent = 'Вопрос ' + (currentIndex + 1) + ' из ' + totalQuestions;
+        qCounter.textContent = '🎂 ' + (currentIndex + 1) + ' из ' + totalQuestions;
+        
+        container.appendChild(secondLine);
         return;
     }
     
     var nextQ = quizData[nextIndex];
     
-    // Переход с блока 1 на блок 2
     if (currentQ.block === 1 && nextQ.block === 2) {
         showTransitionScreen1();
         return;
     }
     
-    // Переход с блока 2 на блок 3
     if (currentQ.block === 2 && nextQ.block === 3) {
         showTransitionScreen2();
         return;
     }
     
-    // Переход внутри блока
     currentIndex = nextIndex;
     renderQuestion(currentIndex);
 }
@@ -876,6 +890,13 @@ function resetQuiz() {
         }).catch(function() {});
     }
     
+    // Убираем финальную вторую строку
+    var container = document.getElementById('questionContainer');
+    var existingSecond = container.querySelector('.final-second-line');
+    if (existingSecond) {
+        existingSecond.remove();
+    }
+    
     userAnswers = {};
     currentIndex = 0;
     startPage.style.display = 'block';
@@ -884,6 +905,7 @@ function resetQuiz() {
     quizPage.style.display = 'none';
     setBackground('bg-start');
 }
+
 
 checkBtn.addEventListener('click', handleCheck);
 nextBtn.addEventListener('click', goToNext);
